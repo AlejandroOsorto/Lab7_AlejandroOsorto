@@ -1,24 +1,28 @@
 package lab7_alejandroosorto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Alejandro
  */
-public class Usuario
+public class Usuario implements Serializable
 {
     private String nombre;
     private String apellido;
     private String usuario;
     private String contraseña;
     private int notaFinal;
+    
 
-    public Usuario(String nombre, String apellido, String usuario, String contraseña, int notaFinal)
+    private static final long SerialVersionUID = 889L;
+    
+    public Usuario(String nombre, String apellido, String usuario, String contraseña)
     {
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
         this.contraseña = contraseña;
-        this.notaFinal = notaFinal;
     }
 
     public String getNombre()
@@ -72,5 +76,9 @@ public class Usuario
     }
     
     
-    
+    @Override
+    public String toString()
+    {
+        return nombre + " " + apellido + "; "+ usuario;
+    }
 }

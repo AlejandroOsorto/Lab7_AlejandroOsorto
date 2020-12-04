@@ -1,6 +1,7 @@
 package lab7_alejandroosorto;
 
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +14,14 @@ public class PRINCIPAL extends javax.swing.JFrame
     
     
     ArrayList ListaUsuarios = new ArrayList();
+    
+    //SuperUsuario
+    String nombreSU = "Carlos";
+    String apellidoSU = "Vallejo";
+    String usuarioSU = "ca.vallejo";
+    String contraSU = "compi123";
+    //------------
+    
     public PRINCIPAL()
     {
         initComponents();
@@ -42,6 +51,12 @@ public class PRINCIPAL extends javax.swing.JFrame
         BTN_Cancelar_REG = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         CT_Contra_REG = new javax.swing.JPasswordField();
+        JD_SU_Ventana = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        CB_Alumnos = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         CT_NombreUsuario = new javax.swing.JTextField();
@@ -157,6 +172,70 @@ public class PRINCIPAL extends javax.swing.JFrame
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        JD_SU_Ventana.addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowActivated(java.awt.event.WindowEvent evt)
+            {
+                JD_SU_VentanaWindowActivated(evt);
+            }
+        });
+
+        jPanel3.setBackground(new java.awt.Color(105, 125, 138));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+
+            },
+            new String []
+            {
+                "Variable", "Tipo"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Lista Alumnos");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(CB_Alumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_Alumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(156, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout JD_SU_VentanaLayout = new javax.swing.GroupLayout(JD_SU_Ventana.getContentPane());
+        JD_SU_Ventana.getContentPane().setLayout(JD_SU_VentanaLayout);
+        JD_SU_VentanaLayout.setHorizontalGroup(
+            JD_SU_VentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        JD_SU_VentanaLayout.setVerticalGroup(
+            JD_SU_VentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar Sesión");
 
@@ -263,7 +342,33 @@ public class PRINCIPAL extends javax.swing.JFrame
     private void BTN_Registrar_REGMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_BTN_Registrar_REGMouseClicked
     {//GEN-HEADEREND:event_BTN_Registrar_REGMouseClicked
         // TODO add your handling code here:
-        
+        if (CT_Nombre_REG.getText().isBlank() || CT_Apellido_REG.getText().isBlank() || CT_NombreUsuario_REG.getText().isBlank() || CT_Contra_REG.getText().isBlank())
+        {
+            JOptionPane.showMessageDialog(JD_Registrar, "Uno o mas campos están vacíos.");
+        }
+        else
+        {
+            String nuevoNombre = CT_Nombre_REG.getText();
+            String nuevoApellido = CT_Apellido_REG.getText();
+            String nuevoUsuario = CT_NombreUsuario_REG.getText();
+            String nuevaContraseña = CT_Contra_REG.getText();
+
+            Usuario User = new Usuario(nuevoNombre, nuevoApellido, nuevoUsuario, nuevaContraseña);
+
+            AdminUsuario AU = new AdminUsuario("./Users.aos");
+            AU.CargarArchivo();
+            AU.setUsuario(User);
+            AU.ModificarArchivo();
+
+            JOptionPane.showMessageDialog(this, "Usuario creado exitosamente.");
+
+            CT_Nombre_REG.setText("");
+            CT_Apellido_REG.setText("");
+            CT_NombreUsuario_REG.setText("");
+            CT_Contra_REG.setText("");
+            JD_Registrar.dispose();
+
+        }
         
     }//GEN-LAST:event_BTN_Registrar_REGMouseClicked
 
@@ -292,17 +397,45 @@ public class PRINCIPAL extends javax.swing.JFrame
             }
         }
         
-        if (nCheck == true && cCheck == true)
+        
+        if (CT_NombreUsuario.getText().equals(usuarioSU) && CT_Contra.getText().equals(contraSU))
         {
             CT_NombreUsuario.setText("");
             CT_Contra.setText("");
-
-            JOptionPane.showMessageDialog(this, "Ha iniciado sesión, bienvenido.");
-        } else
-        {
-            JOptionPane.showMessageDialog(this, "Usuario o Contraseña incorrectos");
+                        
+            JOptionPane.showMessageDialog(this, "Ha iniciado sesión como el ingeniero, bienvenido.");
+            
+            JD_SU_Ventana.setModal(true);
+            JD_SU_Ventana.pack();
+            JD_SU_Ventana.setLocationRelativeTo(this);
+            JD_SU_Ventana.setVisible(true);
         }
+        else
+        {
+            if (nCheck == true && cCheck == true)
+            {
+                CT_NombreUsuario.setText("");
+                CT_Contra.setText("");
+
+                JOptionPane.showMessageDialog(this, "Ha iniciado sesión, bienvenido.");
+            } 
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Usuario o Contraseña incorrectos");
+            }
+        }
+        
     }//GEN-LAST:event_BTN_InicSesMouseClicked
+
+    private void JD_SU_VentanaWindowActivated(java.awt.event.WindowEvent evt)//GEN-FIRST:event_JD_SU_VentanaWindowActivated
+    {//GEN-HEADEREND:event_JD_SU_VentanaWindowActivated
+        // TODO add your handling code here:
+        AdminUsuario AU = new AdminUsuario("./Users.aos");
+        
+        AU.CargarArchivo();
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel(AU.getListaUsuarios().toArray());
+        CB_Alumnos.setModel(modelo);
+    }//GEN-LAST:event_JD_SU_VentanaWindowActivated
 
     /**
      * @param args the command line arguments
@@ -354,6 +487,7 @@ public class PRINCIPAL extends javax.swing.JFrame
     private javax.swing.JButton BTN_InicSes;
     private javax.swing.JButton BTN_Registrar;
     private javax.swing.JButton BTN_Registrar_REG;
+    private javax.swing.JComboBox<String> CB_Alumnos;
     private javax.swing.JTextField CT_Apellido_REG;
     private javax.swing.JPasswordField CT_Contra;
     private javax.swing.JPasswordField CT_Contra_REG;
@@ -361,6 +495,7 @@ public class PRINCIPAL extends javax.swing.JFrame
     private javax.swing.JTextField CT_NombreUsuario_REG;
     private javax.swing.JTextField CT_Nombre_REG;
     private javax.swing.JDialog JD_Registrar;
+    private javax.swing.JDialog JD_SU_Ventana;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -369,7 +504,11 @@ public class PRINCIPAL extends javax.swing.JFrame
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

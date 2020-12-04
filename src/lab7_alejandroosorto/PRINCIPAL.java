@@ -57,6 +57,8 @@ public class PRINCIPAL extends javax.swing.JFrame
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
+        JD_U_Ventana = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         CT_NombreUsuario = new javax.swing.JTextField();
@@ -234,6 +236,30 @@ public class PRINCIPAL extends javax.swing.JFrame
         JD_SU_VentanaLayout.setVerticalGroup(
             JD_SU_VentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel4.setBackground(new java.awt.Color(126, 201, 166));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 759, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 418, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout JD_U_VentanaLayout = new javax.swing.GroupLayout(JD_U_Ventana.getContentPane());
+        JD_U_Ventana.getContentPane().setLayout(JD_U_VentanaLayout);
+        JD_U_VentanaLayout.setHorizontalGroup(
+            JD_U_VentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        JD_U_VentanaLayout.setVerticalGroup(
+            JD_U_VentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -496,6 +522,7 @@ public class PRINCIPAL extends javax.swing.JFrame
     private javax.swing.JTextField CT_Nombre_REG;
     private javax.swing.JDialog JD_Registrar;
     private javax.swing.JDialog JD_SU_Ventana;
+    private javax.swing.JDialog JD_U_Ventana;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -508,6 +535,7 @@ public class PRINCIPAL extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables

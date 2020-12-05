@@ -92,6 +92,7 @@ public class PRINCIPAL extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         BTN_CrearComp = new javax.swing.JButton();
+        BTN_AggVar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         CT_NombreUsuario = new javax.swing.JTextField();
@@ -216,6 +217,14 @@ public class PRINCIPAL extends javax.swing.JFrame
         });
 
         jPanel3.setBackground(new java.awt.Color(105, 125, 138));
+
+        CB_Alumnos.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                CB_AlumnosItemStateChanged(evt);
+            }
+        });
 
         T_Simbolos_SU.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
@@ -424,6 +433,8 @@ public class PRINCIPAL extends javax.swing.JFrame
             }
         });
 
+        BTN_AggVar.setText("Agregar Variable");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -457,7 +468,9 @@ public class PRINCIPAL extends javax.swing.JFrame
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel5Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(JS_LineasASe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(JS_LineasASe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(BTN_AggVar))
                                     .addGroup(jPanel5Layout.createSequentialGroup()
                                         .addComponent(JS_LineasAS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
@@ -484,9 +497,9 @@ public class PRINCIPAL extends javax.swing.JFrame
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(CT_NombreComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -504,25 +517,26 @@ public class PRINCIPAL extends javax.swing.JFrame
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(JS_LineasAS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(JS_LineasASe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel17)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(JS_LineasGCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(JS_LineasOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)))
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(JS_LineasASe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel17)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(JS_LineasGCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(JS_LineasOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                        .addGap(18, 18, 18)
+                        .addComponent(BTN_AggVar)
+                        .addGap(183, 183, 183)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(JS_LineasGC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -777,7 +791,19 @@ public class PRINCIPAL extends javax.swing.JFrame
         int totalLineas = lineasAL + lineasAS + lineasASe + lineasGCI + lineasOC + lineasGC;
         
         Compilador comp = new Compilador(nombreComp, nombreCread, totalLineas);
+        int index = 0;
         
+        for (int i = 0; i < ListaUsuarios.size(); i++)        
+        {
+            String usuario = ((Usuario)ListaUsuarios.get(i)).getUsuario();
+            if (usuario.equals(usuarioConectado))
+            {
+                index = i;
+            }
+        }
+        
+        
+        ((Usuario)ListaUsuarios.get(index)).setComp(comp);
     }//GEN-LAST:event_BTN_CrearCompMouseClicked
 
     private void BTN_CompilarMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_BTN_CompilarMouseClicked
@@ -795,6 +821,20 @@ public class PRINCIPAL extends javax.swing.JFrame
         JD_U_Ventana.dispose();
         usuarioConectado = "";
     }//GEN-LAST:event_MI_CerSesActionPerformed
+
+    private void CB_AlumnosItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CB_AlumnosItemStateChanged
+    {//GEN-HEADEREND:event_CB_AlumnosItemStateChanged
+        // TODO add your handling code here:
+        if (evt.getStateChange() == 1)
+        {
+            Usuario temp = (Usuario)CB_Alumnos.getSelectedItem();
+            if (temp != null)
+            {
+                
+            }
+        }
+        
+    }//GEN-LAST:event_CB_AlumnosItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -842,6 +882,7 @@ public class PRINCIPAL extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTN_AggVar;
     private javax.swing.JButton BTN_Cancelar_REG;
     private javax.swing.JButton BTN_Compilar;
     private javax.swing.JButton BTN_CrearComp;

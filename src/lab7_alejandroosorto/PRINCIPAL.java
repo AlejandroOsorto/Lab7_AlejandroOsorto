@@ -22,6 +22,8 @@ public class PRINCIPAL extends javax.swing.JFrame
     String contraSU = "compi123";
     //------------
     
+    String usuarioConectado = "";
+    
     public PRINCIPAL()
     {
         initComponents();
@@ -55,14 +57,18 @@ public class PRINCIPAL extends javax.swing.JFrame
         jPanel3 = new javax.swing.JPanel();
         CB_Alumnos = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        T_Simbolos_SU = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        T_Errores_SU = new javax.swing.JTable();
+        BTN_Compilar = new javax.swing.JButton();
         JD_U_Ventana = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        MI_CerSes = new javax.swing.JMenuItem();
         JD_Compilador = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -211,7 +217,7 @@ public class PRINCIPAL extends javax.swing.JFrame
 
         jPanel3.setBackground(new java.awt.Color(105, 125, 138));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        T_Simbolos_SU.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
 
@@ -221,10 +227,31 @@ public class PRINCIPAL extends javax.swing.JFrame
                 "Variable", "Tipo"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(T_Simbolos_SU);
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Lista Alumnos");
+
+        T_Errores_SU.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+
+            },
+            new String []
+            {
+                "Error", "Descripcion"
+            }
+        ));
+        jScrollPane3.setViewportView(T_Errores_SU);
+
+        BTN_Compilar.setText("Compilar");
+        BTN_Compilar.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                BTN_CompilarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -236,10 +263,17 @@ public class PRINCIPAL extends javax.swing.JFrame
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(CB_Alumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(CB_Alumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(BTN_Compilar)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(24, 24, 24))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -249,9 +283,13 @@ public class PRINCIPAL extends javax.swing.JFrame
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CB_Alumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(156, Short.MAX_VALUE))
+                    .addComponent(CB_Alumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addComponent(BTN_Compilar)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout JD_SU_VentanaLayout = new javax.swing.GroupLayout(JD_SU_Ventana.getContentPane());
@@ -262,7 +300,7 @@ public class PRINCIPAL extends javax.swing.JFrame
         );
         JD_SU_VentanaLayout.setVerticalGroup(
             JD_SU_VentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel4.setBackground(new java.awt.Color(126, 201, 166));
@@ -293,6 +331,17 @@ public class PRINCIPAL extends javax.swing.JFrame
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Usuario");
+
+        MI_CerSes.setText("Cerrar Sesion");
+        MI_CerSes.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                MI_CerSesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MI_CerSes);
+
         jMenuBar1.add(jMenu2);
 
         JD_U_Ventana.setJMenuBar(jMenuBar1);
@@ -670,6 +719,7 @@ public class PRINCIPAL extends javax.swing.JFrame
         {
             if (nCheck == true && cCheck == true)
             {
+                usuarioConectado = CT_NombreUsuario.getText();
                 CT_NombreUsuario.setText("");
                 CT_Contra.setText("");
 
@@ -679,6 +729,8 @@ public class PRINCIPAL extends javax.swing.JFrame
                 JD_U_Ventana.pack();
                 JD_U_Ventana.setLocationRelativeTo(this);
                 JD_U_Ventana.setVisible(true);
+                
+                
                 
             } 
             else
@@ -728,6 +780,22 @@ public class PRINCIPAL extends javax.swing.JFrame
         
     }//GEN-LAST:event_BTN_CrearCompMouseClicked
 
+    private void BTN_CompilarMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_BTN_CompilarMouseClicked
+    {//GEN-HEADEREND:event_BTN_CompilarMouseClicked
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_BTN_CompilarMouseClicked
+
+    private void MI_CerSesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_MI_CerSesActionPerformed
+    {//GEN-HEADEREND:event_MI_CerSesActionPerformed
+        // TODO add your handling code here:
+        
+        JD_U_Ventana.dispose();
+        usuarioConectado = "";
+    }//GEN-LAST:event_MI_CerSesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -775,6 +843,7 @@ public class PRINCIPAL extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_Cancelar_REG;
+    private javax.swing.JButton BTN_Compilar;
     private javax.swing.JButton BTN_CrearComp;
     private javax.swing.JButton BTN_InicSes;
     private javax.swing.JButton BTN_Registrar;
@@ -798,6 +867,9 @@ public class PRINCIPAL extends javax.swing.JFrame
     private javax.swing.JSpinner JS_LineasGC;
     private javax.swing.JSpinner JS_LineasGCI;
     private javax.swing.JSpinner JS_LineasOC;
+    private javax.swing.JMenuItem MI_CerSes;
+    private javax.swing.JTable T_Errores_SU;
+    private javax.swing.JTable T_Simbolos_SU;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -828,7 +900,7 @@ public class PRINCIPAL extends javax.swing.JFrame
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

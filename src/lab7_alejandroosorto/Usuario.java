@@ -12,6 +12,7 @@ public class Usuario implements Serializable
     private String apellido;
     private String usuario;
     private String contraseña;
+    private Compilador comp;
     private int notaFinal;
     
 
@@ -74,6 +75,18 @@ public class Usuario implements Serializable
     {
         this.notaFinal = notaFinal;
     }
+
+    public Compilador getComp()
+    {
+        return comp;
+    }
+
+    public void setComp(Compilador comp)
+    {
+        this.comp = comp;
+    }
+    
+    
     
     
     @Override
